@@ -1,9 +1,13 @@
 <?php
 
-class auth
+class Auth
 {
     function print()
     {
-          echo 'test \'auth\' class';
+          echo 'test \'Auth\' class';
+    }
+    function index()
+    {
+        echo 'index method from \'Auth\' class';
     }
 }

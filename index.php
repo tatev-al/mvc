@@ -1,21 +1,31 @@
 <?php
 
-$url_string = explode('/', $_SERVER['REQUEST_URI']);
-
-if(file_exists("Controllers/" . $url_string[1] . ".php"))
-{
-    include "Controllers/" . $url_string[1] . ".php";
-    if(class_exists($url_string[1]))
+$url_array = explode('/', ltrim($_SERVER['REQUEST_URI'], '/'));
+$ctrl_class = ucfirst($url_array[0]);
+if(file_exists("Controllers" . DIRECTORY_SEPARATOR . $ctrl_class . ".php"))
+{    
+    spl_autoload_register(function($class_name){
+		include "Controllers" . DIRECTORY_SEPARATOR . $class_name . ".php";
+	});
+     
+    if(class_exists($ctrl_class))
     {
-        $object = new $url_string[1]();
-        if(method_exists($object, $url_string[2]))
+        $ctrl_object = new $ctrl_class;
+        if (empty($url_array[1]))
         {
-            $method = $url_string[2];
-            $object->$method();
+            if(method_exists($ctrl_object, 'index'))
+            {
+                $ctrl_object->index();
+            }
+            else
+            {
+                echo "Object created";
+            }
         }
-        else if ($url_string[2] == null)
+        else if(method_exists($ctrl_object, $url_array[1]))
         {
-            echo "Object created";
+            $method = $url_array[1];
+            $ctrl_object->$method();
         }
         else
         {
