@@ -9,7 +9,7 @@ class Routes
         if(!empty($path[0]))
         {
             $ctrl_class = ucfirst($path[0]);
-            if(file_exists("Controllers" . DIRECTORY_SEPARATOR . $ctrl_class . ".php"))
+            if(file_exists("Controllers\\" . $ctrl_class . ".php"))
             {
                 $ctrl_class_name = "Controllers\\" . $ctrl_class;
                 if(class_exists("Controllers\\" . $ctrl_class))

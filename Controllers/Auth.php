@@ -14,6 +14,6 @@ class Auth
     }
     public function print($var)
     {
-        echo 'variable in Auth: ' . $var;
+        echo 'argument in Auth: ' . $var;
     }
 }
