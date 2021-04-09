@@ -27,11 +27,7 @@ class Routes
                             }
                             else
                             {
-                                $param_array = [];
-                                for($i = 2; $i < count($path); $i++)
-                                {
-                                    $param_array[] = $path[$i];
-                                }
+                                $param_array = array_slice($path, 2);
                                 $ctrl_object->$method(...$param_array);
                             }
                         }
