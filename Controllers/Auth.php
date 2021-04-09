@@ -1,13 +1,19 @@
 <?php
 
+namespace Controllers;
+
 class Auth
 {
-    function test()
+    public function test()
     {
           echo 'test \'Auth\' class';
     }
-    function index()
+    public function index()
     {
         echo 'index method from \'Auth\' class';
+    }
+    public function print($var)
+    {
+        echo 'variable in Auth: ' . $var;
     }
 }
