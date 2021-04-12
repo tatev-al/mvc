@@ -21,15 +21,8 @@ class Routes
                         $method = $path[1];
                         if(method_exists($ctrl_object, $method))
                         {
-                            if(empty($path[2]))
-                            {
-                                $ctrl_object->$method();
-                            }
-                            else
-                            {
-                                $param_array = array_slice($path, 2);
-                                $ctrl_object->$method(...$param_array);
-                            }
+                            $param_array = array_slice($path, 2);
+                            $ctrl_object->$method(...$param_array);
                         }
                         else
                         {
