@@ -1,19 +1,27 @@
 <?php
 
 namespace Controllers;
+use System\Controller;
 
-class Auth
+class Auth extends Controller 
 {
-    public function test()
+    public function register()
     {
-          echo 'test \'Auth\' class';
+        $this->view->render("register");
     }
+
+    public function login()
+    {
+        $this->view->render("login");
+    }
+
+    public function welcome()
+    {
+        $this->view->render("welcome");
+    }
+
     public function index()
     {
-        echo 'index method from \'Auth\' class';
-    }
-    public function print($var)
-    {
-        echo 'argument in Auth: ' . $var;
+        echo 'index method of \'Auth\' class';
     }
 }
