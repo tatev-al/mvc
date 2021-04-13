@@ -45,11 +45,6 @@ class Auth extends Controller
         $this->view->render("login");
     }
 
-    public function test()
-    {
-        var_dump($_POST);
-    }
-
     public function index()
     {
         echo 'index method of \'Auth\' class';
