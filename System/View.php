@@ -31,4 +31,9 @@ class View
             echo "Wrong file name";
         }
     }
+
+    public function __get($name) 
+    {
+        return null;
+    }
 }

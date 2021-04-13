@@ -7,6 +7,6 @@ class Home extends Controller
 {
     public function index()
     {
-        $this->view->render("register");
+        $this->view->render("welcome");
     }
 }
