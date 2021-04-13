@@ -12,7 +12,7 @@ class Routes
         }
         else
         {
-            $ctrl_class = 'Home';
+            $ctrl_class = "Home";
         }
         if(file_exists("Controllers" . DIRECTORY_SEPARATOR . $ctrl_class . ".php"))
         {
