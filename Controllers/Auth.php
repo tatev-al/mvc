@@ -26,7 +26,11 @@ class Auth extends Controller
             if(!empty($_POST['email']) && !empty($_POST['password']))
             {
                 $user = new User;
-                if($user->create($_POST))
+                if($user->userExists($_POST["email"]))
+                {
+                    $this->view->emailError = "Try another email";
+                }
+                else if($user->create($_POST))
                 {
                     header("Location: login");
                 }
