@@ -22,12 +22,12 @@ class User extends Model
     {
         return $this->db->select("SELECT * FROM users");
     }
-    public function getUserName($id)
-    {
-        return $this->db->select("SELECT name FROM users WHERE id = $id", false);
-    }
     public function userExists($email)
     {
         return $this->db->select("SELECT email FROM users WHERE email = '$email'", false);
+    }
+    public function getUserById($id)
+    {
+        return $this->db->select("SELECT * FROM users WHERE id='$id'", false);
     }
 }

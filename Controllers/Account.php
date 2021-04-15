@@ -18,7 +18,7 @@ class Account extends Controller
     public function index()
     {
         $user = new User;
-        $userData = $user->getUserName($_SESSION['id']);
+        $userData = $user->getUserById($_SESSION['id']);
         $this->view->userName = $userData['name'];
         $this->view->render("account");
     }
