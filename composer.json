@@ -1,0 +1,12 @@
+{
+    "name": "aleksanyan_pc/mvc",
+    "authors": [
+        {
+            "name": "tatev-al",
+            "email": "tatevik.aleksanyan19@gmail.com"
+        }
+    ],
+    "require": {
+        "robmorgan/phinx": "^0.12.6"
+    }
+}

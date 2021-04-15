@@ -1,7 +1,9 @@
 <?php
 
 namespace Controllers;
+
 use System\Controller;
+use Models\User;
 
 class Auth extends Controller 
 {
@@ -9,6 +11,10 @@ class Auth extends Controller
     {
         if($_SERVER['REQUEST_METHOD'] == "POST")
         {
+            if(empty($_POST["name"]))
+            {
+                $this->view->nameError = "Name is required";
+            }
             if(empty($_POST["email"]))
             {
                 $this->view->emailError = "Email is required";
@@ -19,7 +25,15 @@ class Auth extends Controller
             }
             if(!empty($_POST['email']) && !empty($_POST['password']))
             {
-                var_dump($_POST);
+                $user = new User;
+                if($user->create($_POST))
+                {
+                    header("Location: login");
+                }
+                else
+                {
+                    $this->view->regError = "Invalid registration";
+                }
             }
         }
         $this->view->render("register");
@@ -39,9 +53,25 @@ class Auth extends Controller
             }
             if(!empty($_POST['email']) && !empty($_POST['password']))
             {
-                var_dump($_POST);
+                $user = new User;
+                $result = $user->login($_POST['email'], $_POST['password']);
+                if($result)
+                {
+                    $_SESSION['id'] = $result['id'];
+                    header("Location: /account");
+                }
+                else
+                {
+                    $this->view->loginError = "Invalid login";
+                }
             }
         }
+        $this->view->render("login");
+    }
+
+    public function logout()
+    {
+        session_unset();
         $this->view->render("login");
     }
 
