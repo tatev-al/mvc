@@ -7,6 +7,14 @@ use Models\User;
 
 class Auth extends Controller 
 {
+    public function __construct()
+    {
+        if(isset($_SESSION['id']))
+        {
+            header("Location: /account");
+        }
+        parent::__construct();
+    }
     public function register()
     {
         if($_SERVER['REQUEST_METHOD'] == "POST")
@@ -32,7 +40,7 @@ class Auth extends Controller
                 }
                 else if($user->create($_POST))
                 {
-                    header("Location: login");
+                    header("Location: /auth/login");
                 }
                 else
                 {
@@ -40,7 +48,7 @@ class Auth extends Controller
                 }
             }
         }
-        $this->view->render("register");
+        $this->view->render("register", false);
     }
 
     public function login()
@@ -70,13 +78,13 @@ class Auth extends Controller
                 }
             }
         }
-        $this->view->render("login");
+        $this->view->render("login", false);
     }
 
     public function logout()
     {
         session_unset();
-        $this->view->render("login");
+        header("Location: /auth/login");
     }
 
     public function index()

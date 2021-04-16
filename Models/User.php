@@ -28,6 +28,13 @@ class User extends Model
     }
     public function getUserById($id)
     {
-        return $this->db->select("SELECT * FROM users WHERE id='$id'", false);
+        return $this->db->select("SELECT id, name, email, avatar_img FROM users WHERE id='$id'", false); //id, name, email, avatar_img
+    }
+    public function uploadAvatar($filename)
+    {
+        $newAvatar = [
+            "avatar_img" => "$filename"
+        ];
+        return $this->db->where('id', $_SESSION['id'])->update("users", $newAvatar);
     }
 }

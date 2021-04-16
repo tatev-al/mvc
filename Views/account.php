@@ -1,7 +1,11 @@
 <div class = "container">
-    <img src="Images/avatar.png" class="rounded float-left" alt="avatar">
+    <img src="Public/Images/Avatars/<?= $this->userAvatar ?>" class="rounded float-left" width='180' height='180' alt="avatar">
     <div class="col-sm-10">        
-        <a href = "/auth/logout" class="btn btn-outline-dark float-right">Logout</a>
-        <h2 class="d-flex justify-content-center mt-2">Home Page <?= $this->userName ?></h2>
+        <h2 class="d-flex justify-content-center mt-2">Personal Page <?= $this->userName ?></h2>
+    </div>
+    <div class="block col-sm-3">
+        <form action="" method="post"> 
+            <input type="file" name="avatar_img" onchange="this.form.submit();">
+        </form>
     </div>
 </div>
