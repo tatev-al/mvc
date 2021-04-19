@@ -53,7 +53,7 @@ class Account extends Controller
             }
         }
         $this->view->accountData = $user->getUserById($_SESSION['id']);
-        if(empty($this->view->accountData) || !file_exists($this->view->accountData['avatar_img']))
+        if(empty($this->view->accountData))
         {
             $user->uploadAvatar('avatar.png');
             $this->view->accountData['avatar_img'] = 'avatar.png';
