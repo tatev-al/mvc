@@ -28,7 +28,7 @@ class User extends Model
     }
     public function getUserById($id)
     {
-        return $this->db->select("SELECT id, name, email, avatar_img FROM users WHERE id='$id'", false); //id, name, email, avatar_img
+        return $this->db->select("SELECT id, name, email, avatar_img FROM users WHERE id='$id'", false);
     }
     public function uploadAvatar($filename)
     {
@@ -36,5 +36,9 @@ class User extends Model
             "avatar_img" => "$filename"
         ];
         return $this->db->where('id', $_SESSION['id'])->update("users", $newAvatar);
+    }
+    public function getFriends($id)
+    {
+        return $this->db->select("SELECT id, name, email, avatar_img FROM users WHERE NOT id = $id");
     }
 }
