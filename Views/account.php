@@ -15,6 +15,7 @@
         <small id="imgWarning" class="form-text text-danger"><?= $this->imgUploadError ?></small>
         <small id="imgWarning" class="form-text text-danger"><?= $this->imgTypeError ?></small>
         <small id="imgWarning" class="form-text text-danger"><?= $this->imgSizeError ?></small>
+        <small id="imgWarning" class="form-text text-danger"><?= $this->imgExistError ?></small>
     </form>
 </div>
 <?php } ?>
