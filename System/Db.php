@@ -9,7 +9,7 @@ class Db extends \mysqli
 	//create connection
 	function __construct()
 	{
-		include "db_config.php";
+		include "./Configs/db_config.php";
 		parent::__construct($servername, $username, $password, $db_name);
 		if (mysqli_connect_errno()) {
             die("Connection failed: " . mysqli_connect_error());
