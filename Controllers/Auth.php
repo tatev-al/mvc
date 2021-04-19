@@ -48,7 +48,7 @@ class Auth extends Controller
                 }
             }
         }
-        $this->view->render("register", false);
+        $this->view->render("register");
     }
 
     public function login()
@@ -78,7 +78,7 @@ class Auth extends Controller
                 }
             }
         }
-        $this->view->render("login", false);
+        $this->view->render("login");
     }
 
     public function logout()
