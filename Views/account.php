@@ -8,12 +8,13 @@
                     <input type="file" id="avatar_img" name="avatar_img" class = 'custom-file-input' onchange="this.form.submit();">
                     <label class="custom-file-label" for='avatar_img'>Change Avatar Photo</label>
                     
-                    <small id="imgWarning" class="form-text text-danger"><?= $this->imgUploadError ?></small>
-                    <small id="imgWarning" class="form-text text-danger"><?= $this->imgTypeError ?></small>
-                    <small id="imgWarning" class="form-text text-danger"><?= $this->imgSizeError ?></small>
-                    <small id="imgWarning" class="form-text text-danger"><?= $this->imgExistError ?></small>
+                    <small id="imgWarning" class="form-text text-danger"><?= $this->errorUpload ?></small>
                 </form>
             </div>
+        <?php } ?>
+        <?php if($_SESSION['id'] != $this->accountData['id'])
+        {?>
+            <a class="btn btn-light" href="/account/chat/<?= $this->accountData['id'] ?>">Chat</a>
         <?php } ?>
     </div>
     <div class='col-sm-3'>     

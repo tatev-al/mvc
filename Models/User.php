@@ -41,4 +41,9 @@ class User extends Model
     {
         return $this->db->select("SELECT id, name, email, avatar_img FROM users WHERE NOT id = $id");
     }
+    public function getMessages($id)
+    {
+        $from_id = $_SESSION['id'];
+        return $this->db->select("SELECT from_id, body, date FROM messages WHERE (from_id = $id AND to_id = $from_id) OR (from_id = $from_id AND to_id = $id) ORDER BY date");
+    }
 }
