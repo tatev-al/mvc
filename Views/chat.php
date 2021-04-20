@@ -7,7 +7,7 @@
         <div class="card-header bg-transparent border-secondary">
             <h4 class = 'text-dark'><?=$this->accountData['name']?></h4>
         </div>
-        <div style = "height: 700px; overflow-y: auto" class = "d-flex flex-column">
+        <div style = "height: 500px; overflow-y: auto" class = "d-flex flex-column">
         <?php
             foreach ($this->messages as $msg)
             {
