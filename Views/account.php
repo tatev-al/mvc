@@ -1,6 +1,6 @@
 <div class = "d-flex bd-highlight mb-3">
     <div class="col-sm-3">
-        <img src="/Public/Images/Avatars/<?= $this->accountData['avatar_img'] ?>" class="img-fluid img-thumbnail " width='180' height='180' alt="avatar">
+        <img src="/Public/Images/Avatars/<?= $this->accountData['avatar_img'] ?>" class="img-fluid img-thumbnail" width='180' height='180' alt="avatar">
         <?php if($_SESSION['id'] == $this->accountData['id'])
         {?>
             <div class="custom-file">
