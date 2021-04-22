@@ -52,7 +52,6 @@
         $('button').click(function()
         {
             let text = document.onkeypress=$("#TextMsg").val();
-            alert(text);
             if(text.length > 0)
             {
                 $.ajax({
