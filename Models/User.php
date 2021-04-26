@@ -41,9 +41,22 @@ class User extends Model
     {
         return $this->db->select("SELECT id, name, email, avatar_img FROM users WHERE NOT id = $id");
     }
+    public function sendMessage($id, $message)
+    {
+        $data = [
+            "body" => $message,
+            "from_id" => $_SESSION['id'],
+            "to_id" => $id,
+        ];
+        return $this->db->insert("messages", $data);
+    }
     public function getMessages($id)
     {
         $from_id = $_SESSION['id'];
-        return $this->db->select("SELECT from_id, body, date FROM messages WHERE (from_id = $id AND to_id = $from_id) OR (from_id = $from_id AND to_id = $id) ORDER BY date");
+        return $this->db->select("SELECT from_id, body, date FROM messages WHERE (from_id = $id AND to_id = $from_id) OR (from_id = $from_id AND to_id = $id) ORDER BY id");
+    }
+    public function getLastMsg()
+    {
+        return $this->db->select("SELECT from_id, body, date from messages ORDER BY id DESC LIMIT 1", false);
     }
 }

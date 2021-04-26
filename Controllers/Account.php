@@ -54,21 +54,24 @@ class Account extends Controller
     public function user($id)
     {
         $this->view->accountData = $this->user->getUserById($id);
+        if(!$this->view->accountData["avatar_img"])
+        {
+            $this->view->accountData['avatar_img'] = 'avatar.png';
+        }
         $this->view->render('account');
     }    
-    public function chat($id) {
+    public function chat($id)
+    {
         $this->view->accountData = $this->user->getUserById($id);
         $this->view->messages = $this->user->getMessages($id);
-        if(isset($_POST['chat'])) {            
-            $data = [
-                "body" => $_POST['chat'],
-                "from_id" => $_SESSION['id'],
-                "to_id" => $id,
-            ];
-            
-            $this->user->db->insert("messages", $data);
-            $this->view->get_new_msg = $this->user->getMessages($id);
-            echo json_encode(end($this->view->get_new_msg));
+        if(isset($_POST['chat']))
+        {
+            if($this->user->sendMessage($id, $_POST['chat']))
+            {
+                $getLastMsg = $this->user->getLastMsg($id);
+                echo json_encode($getLastMsg);
+                exit;
+            }
         }
         $this->view->render("chat");
     }

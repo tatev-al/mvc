@@ -1,6 +1,3 @@
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
-
 <?php if(!isset($_SESSION['id'])){ ?>
     <?php header("Location: /account");?>
 <?php } ?>
@@ -14,28 +11,25 @@
         <?php
             foreach ($this->messages as $msg)
             {
-                if($msg["body"] != NULL)
-                {
-                    if($msg["from_id"] == $_SESSION['id'])
-                    {?> 
-                        <div>
-                            <small class = "mr-4 mb-1 float-left p-3"><?=$msg["date"]?></small>
-                        </div>
-                        <div class = "w-75">
-                            <h5 class = "mt-4 ml-3 float-left bg-secondary p-3 text-light" style = "border-radius: 20px;"><?=$msg["body"]?></h5>
-                        </div>
-                    <?php
-                    }
-                    else
-                    {?>
-                        <div>
-                            <small class = "mr-4 mb-1 float-right p-1"><?=$msg["date"]?></small>
-                        </div>
-                        <div>
-                            <h5 class = "mt-4 mr-3 float-right bg-dark p-3 text-light" style = "border-radius: 20px;"><?=$msg["body"]?></h5>
-                        </div>
-                    <?php
-                    }
+                if($msg["from_id"] == $_SESSION['id'])
+                {?> 
+                    <div>
+                        <small class = "mr-4 mb-1 float-left p-3"><?=$msg["date"]?></small>
+                    </div>
+                    <div class = "w-75">
+                        <h5 class = "mt-4 ml-3 float-left bg-secondary p-3 text-light" style = "border-radius: 20px;"><?=$msg["body"]?></h5>
+                    </div>
+                <?php
+                }
+                else
+                {?>
+                    <div>
+                        <small class = "mr-4 mb-1 float-right p-1"><?=$msg["date"]?></small>
+                    </div>
+                    <div>
+                        <h5 class = "mt-4 mr-3 float-right bg-dark p-3 text-light" style = "border-radius: 20px;"><?=$msg["body"]?></h5>
+                    </div>
+                <?php
                 }
             }
         ?>
@@ -48,7 +42,15 @@
 </div>
 
 <script>
-    $(document).ready(function(){
+    $(document).ready(function()
+    {
+        $("#TextMsg").keyup(function(event)
+        {
+            if (event.keyCode === 13)
+            {
+                $('button').click();
+            }
+        });
         $('button').click(function()
         {
             let text = document.onkeypress=$("#TextMsg").val();
@@ -63,10 +65,16 @@
                     },
                     success: function(response)
                     {
-                        $("#chatMsg").append("<div class = 'w-75'><h5 class = 'mt-4 mr-3 float-left bg-dark p-3 text-light' style = 'border-radius: 20px;''>" 
-                                + response['body'] + "</h5></div>"
-                                + "<small class = 'ml-4 mb-1'>" 
-                                + response['date'] + "</small>");
+                        $("#chatMsg").append("<div><small class = 'mr-4 mb-1 float-left p-3'>" + response['date'] + "</small></div>" +
+                            "<div class = 'w-75'><h5 class = 'mt-4 ml-3 float-left bg-secondary p-3 text-light' style = 'border-radius: 20px;'>"
+                            + response['body'] + "</h5></div>");
+                        
+                    },
+                    error: function()
+                    {
+                        $("#chatMsg").append("<div class = 'w-75'><h5 class = 'mt-4 ml-3 float-left bg-secondary p-3 text-light' style = 'border-radius: 20px;'>"
+                         + text + "</h5></div>" +
+                         "<div><small class = 'mr-4 mb-1 float-left p-3' style='color: red'>" + 'message not delivered ' + "</small></div>");
                     },
                 })
             }
