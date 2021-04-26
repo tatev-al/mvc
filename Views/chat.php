@@ -42,8 +42,6 @@
 </div>
 
 <script>
-    $(document).ready(function()
-    {
         $("#TextMsg").keyup(function(event)
         {
             if (event.keyCode === 13)
@@ -80,6 +78,6 @@
             }
             $("#TextMsg").val("");
         });
-    });
+
 
 </script>
