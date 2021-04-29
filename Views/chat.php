@@ -57,7 +57,7 @@
             $.ajax({
                 type: "POST",
                 dataType: "json",
-                url: "/account/chat/<?= $this->accountData['id'] ?>",
+                url: location.pathname,
                 data: {
                     chat: text
                 },
