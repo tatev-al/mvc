@@ -50,13 +50,18 @@ class User extends Model
         ];
         return $this->db->insert("messages", $data);
     }
-    public function getMessages($id)
+    public function getMessages($to_id, $lastId = 0)
     {
         $from_id = $_SESSION['id'];
-        return $this->db->select("SELECT from_id, body, date FROM messages WHERE (from_id = $id AND to_id = $from_id) OR (from_id = $from_id AND to_id = $id) ORDER BY id");
+        return $this->db->select("SELECT from_id, body, m.id, u.name, date 
+                                        FROM messages as m 
+                                        LEFT JOIN users as u ON m.from_id = u.id 
+                                        WHERE ((from_id = $from_id AND to_id = $to_id) 
+                                            OR (from_id = $to_id AND to_id = $from_id))
+                                            AND m.id > $lastId ORDER BY m.id");
     }
-    public function getLastMsg()
+    public function getLastSendMsg()
     {
-        return $this->db->select("SELECT from_id, body, date from messages ORDER BY id DESC LIMIT 1", false);
+        return $this->db->select("SELECT id, from_id, body, date from messages ORDER BY id DESC LIMIT 1", false);
     }
 }
