@@ -68,8 +68,8 @@ class Account extends Controller
         {
             if($this->user->sendMessage($id, $_POST['chat']))
             {
-                $getLastMsg1 = $this->user->getLastSendMsg($id);
-                echo json_encode($getLastMsg1);
+                $getLastMsg = $this->user->getLastSendMsg($id);
+                echo json_encode($getLastMsg);
                 exit;
             }
         }
